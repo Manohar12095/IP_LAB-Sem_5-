@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Ticket Reservation System</title>
+</head>
+<body>
+<header>
+  <h1>Manohar Theater Ticket Reservation System</h1>
+</header>
+<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTk2fs4J8BPW5f8clNOjvgEDfJEujSunRzIMn6C_8s4mA&s=10" width="300"></img>
+<section>
+  <h2>Available Movies</h2>
+  <table border="1">
+    <tr>
+      <th>Movie Name</th>
+      <th>Show Time</th>
+      <th>Price</th>
+      <th>Seats Available</th>
+    </tr>
+    <tr>
+      <td>It</td>
+      <td>10:00 AM</td>
+      <td>250</td>
+      <td>42</td>
+    </tr>
+    <tr>
+      <td>Simba</td>
+      <td>2:00 PM</td>
+      <td>220</td>
+      <td>65</td>
+    </tr>
+    <tr>
+      <td>Tom and Jerry</td>
+      <td>5:30 PM</td>
+      <td>200</td>
+      <td>30</td>
+    </tr>
+  </table>
+</section>
+<aside>
+  <h3>Booking Rules</h3>
+  <ul>
+    <li>Arrive 15 minutes before showtime</li>
+    <li>Tickets are non-refundable</li>
+    <li>Outside food is not allowed</li>
+    <li>Stand up when the Manohar arrives on the theater</li>
+  </ul>
+</aside>
+<article>
+  <h2>Book Your Ticket</h2>
+  <form action="submit.jsp" method="post">
+    Name: <input type="text" name="name" /><br><br>
+    Email: <input type="email" name="email" /><br><br>
+    Select Movie:
+    <select name="movie">
+      <option>It</option>
+      <option>Simba</option>
+      <option>Tom and Jerry</option>
+    </select><br><br>
+    Number of Tickets: <input type="number" name="tickets" min="1" max="10" /><br><br>
+    <input type="submit" value="Book Now" />
+  </form>
+</article>
+<footer>
+  <p>This movie system has created by Manohar.S</p>
+</footer>
+</body>
+</html>
