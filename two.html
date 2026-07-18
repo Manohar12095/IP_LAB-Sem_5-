@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>ShopEase - Online Shopping System</title>
+</head>
+<body bgcolor="#ACDFDD">
+<table >
+<tr>
+<td
+</td>
+<td>
+<h1><b>NovaCart</b></h1>
+</td>
+</tr>
+</table>
+<hr>
+<table width="100%" border="0" cellpadding="8">
+<tr align="center">
+<td><a href="#home">Home</font></a></td>
+<td><a href="#products">Electronics</font></a></td>
+<td><a href="#products">Mobiles</font></a></td>
+<td><a href="#products">Appliances</font></a></td>
+<td><a href="#purchase">Purchase</font></a></td>
+<td><a href="#location">Store Locator</font></a></td>
+<td><a href="#contact">Contact</font></a></td>
+</tr>
+</table>
+<hr>
+<section id="home">
+<h2>Welcome to NovaCart</h2>
+<p>
+NovaCart is an Online Shopping System where users can view
+products, watch product videos, locate nearby stores,
+drag and drop products, and purchase products using
+HTML5 form controls.
+</p>
+</section>
+<hr>
+<section id="categories">
+<h2>Shop by Category</h2>
+<img src="shopping.jpg"
+alt="Shopping"
+usemap="#shopmap"
+width="700"
+height="300">
+<map name="shopmap">
+<area shape="rect"
+coords="0,0,200,250"
+href="https://www.amazon.in"
+alt="Watch">
+<area shape="rect"
+coords="200,0,400,250"
+href="https://www.myntra.com"
+alt="Mobile">
+<area shape="rect"
+coords="400,0,600,250"
+href="https://www.flipkart.com"
+alt="Laptop">
+</section>
+<hr>
+<h2>Featured Products</h2>
+<table border="1" cellpadding="30" cellspacing="5">
+<tr>
+<td width="30%" align="center" valign="top">
+<img src="mobile1.jpg" width="140" height="140" alt="Mobile Phone - Front View"><br>
+<br><br>
+<b>Smartphone X200</b><br>
+</td>
+<td width="30%" align="center" valign="top">
+<img src="watch1.jpg" width="140" height="140" alt="Smart Watch - Front View"><br>
+<br><br>
+<b>Smart Watch Pro</b><br>
+</td>
+<td width="30%" align="center" >
+<img src="laptop1.jpg" width="140" height="140" alt="Laptop - Front View"><br
+<br><br>
+<b>UltraBook 14"</b><br>
+</td>
+</tr>
+</table>
+</section>
+<hr>
+<section id="video">
+<h2>Product Video</h2>
+<video width="730" height="400" controls>
+<source src="product.mp4" type="video/mp4">
+Your browser does not support video.
+</video>
+</section>
+<hr>
+<section>
+<h2>Product Audio</h2>
+<audio controls>
+<source src="music.mp3" type="audio/mpeg">
+Your browser does not support audio.
+</audio>
+</section>
+<hr>
+<section id="purchase">
+<h2>Purchase Form</h2>
+<form>
+<table cellpadding="5" border="0">
+<tr>
+<td >Name</td>
+<td ><input type="text" required></td>
+</tr>
+<tr>
+<td >Email</td>
+<td ><input type="email" required></td>
+</tr>
+<tr>
+<td >Phone</td>
+<td ><input type="tel"></td>
+</tr>
+<tr>
+<td >Product</td>
+<td >
+<select>
+<option>Mobile</option>
+<option>Laptop</option>
+<option>Watch</option>
+</select>
+</td>
+</tr>
+<tr>
+<td >Quantity</td>
+<td ><input type="number" min="1" max="10"></td>
+</tr>
+<tr>
+<td >Delivery Date</td>
+<td ><input type="date"></td>
+</tr>
+<tr>
+<td >Address</td>
+<td ><textarea rows="4" cols="25"></textarea></td>
+</tr>
+<tr>
+<td >Payment</td>
+<td >
+<input type="radio" name="pay"> Cash
+<input type="radio" name="pay"> UPI
+<input type="radio" name="pay"> Card
+</td>
+</tr>
+<tr>
+<td colspan="2" >
+<input type="submit" value="Place Order">
+<input type="reset" value="Clear">
+</td>
+</tr>
+</table>
+</form>
+</section>
+<hr>
+<section id="location">
+<h2>Find My Store</h2>
+<button onclick="getLocation()">Get Location</button>
+<p id="demo"></p>
+</section>
+<hr>
+<section id="contact">
+<h2>Contact Us</h2>
+<p>Email : support@shopease.com</p>
+<p>Phone : +91 9876543210</p>
+</section>
+<hr>
+<footer>
+<table width="100%" border="0" cellpadding="10">
+<tr>
+<td align="center">
+<font ><b>&copy; 2026 NovaCart - Online Shopping System</b></font>
+</td>
+</tr>
+</table>
+</footer>
+<script>
+var x = document.getElementById("demo");
+function getLocation()
+{
+if (navigator.geolocation)
+{
+navigator.geolocation.getCurrentPosition(showPosition);
+}
+else
+{
+x.innerHTML = "Geolocation not supported.";
+}
+}
+function showPosition(position)
+{
+x.innerHTML =
+"Latitude : " + position.coords.latitude +
+"<br>Longitude : " + position.coords.longitude;
+}
+</script>
+</body>
+</html>
