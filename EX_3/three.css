@@ -1,0 +1,48 @@
+body {
+  background-color: #ACDFDD;
+  font-family: Verdana, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+hr {
+  border: 1px solid #00695c;
+}
+section p {
+  line-height: 1.6;
+  color: #333;
+}
+#categories {
+  text-align: center;
+}
+.productCard {
+  border-radius: 6px;
+  transition: background-color 0.3s;
+}
+table, td {
+  border-color: #00695c;
+}
+nav a, table tr td a {
+  text-decoration: none;
+  color: #00332d;
+  font-weight: bold;
+}
+input:focus, textarea:focus, select:focus {
+  border: 2px solid #00695c;
+  outline: none;
+}
+.btn {
+  background-color: #00695c;
+  color: white;
+  padding: 6px 14px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.btn:hover {
+  background-color: #004d40;
+}
+footer {
+  background-color: #00695c;
+  margin-top: 20px;
+}
