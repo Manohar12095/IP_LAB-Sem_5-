@@ -1,0 +1,41 @@
+body {
+  font-family: Verdana, sans-serif;
+  background-color: #f4f6f8;
+  margin: 20px;
+}
+h1, h2, h3 {
+  font-weight: bold;
+}
+.product {
+  display: inline-block;
+  width: 100px;
+  padding: 8px;
+  margin: 5px;
+  background-color: lightgreen;
+  text-align: center;
+  cursor: grab;
+  border: 1px solid green;
+}
+.btn {
+  background-color: darkblue;
+  color: white;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+form label {
+  display: block;
+  margin-top: 10px;
+  font-weight: bold;
+}
+input:focus {
+  border: 2px solid darkblue;
+}
+.btn:hover {
+  background-color: navy;
+}
+#demo {
+  color: darkgreen;
+  font-weight: bold;
+}

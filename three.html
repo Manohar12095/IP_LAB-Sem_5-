@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Online Shopping System - CSS Styled</title>
+<link rel="stylesheet" type="text/css" href="three.css" />
+<style type="text/css">
+  h1, h2 {
+    color: darkblue;
+    text-align: center;
+  }
+  #cart {
+    border: 2px dashed gray;
+    width: 300px;
+    height: 100px;
+    padding: 10px;
+  }
+  .product:hover {
+    background-color: yellow;
+  }
+</style>
+</head>
+<body>
+<h1 style="font-family: Arial; text-decoration: underline;">Online Shopping System</h1>
+<h2>Product Video</h2>
+<video width="320" height="180" controls>
+  <source src="product-demo.mp4" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
+<h2>Product Categories (Image Map)</h2>
+<img src="workplace.jpg" alt="Workplace" usemap="#workmap" width="400" height="300">
+<map name="workmap">
+  <area shape="rect" coords="34,44,270,350" alt="Computer" href="computer.htm">
+  <area shape="poly" coords="290,172,292,245,333,250,330,170" alt="Phone" href="phone.htm">
+  <area shape="circle" coords="337,300,44" alt="Coffee" href="coffee.htm">
+</map>
+<h2>Add Products to Cart (Drag and Drop)</h2>
+<div id="p1" class="product" draggable="true" ondragstart="drag(event)">Laptop</div>
+<div id="p2" class="product" draggable="true" ondragstart="drag(event)">Mobile</div>
+<div id="p3" class="product" draggable="true" ondragstart="drag(event)">Headphones</div>
+<h3>Cart:</h3>
+<div id="cart" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+<h2>Find Nearest Store</h2>
+<button onclick="getLocation()">Get My Location</button>
+<p id="demo"></p>
+<h2>Purchase Form</h2>
+<form action="#" method="post">
+  <label>Full Name:</label><br>
+  <input type="text" name="fullname" required placeholder="Enter your name"><br><br>
+  <label>Email:</label><br>
+  <input type="email" name="email" required placeholder="you@example.com"><br><br>
+  <label>Phone Number:</label><br>
+  <input type="tel" name="phone" pattern="[0-9]{10}" placeholder="10-digit number"><br><br>
+  <label>Delivery Date:</label><br>
+  <input type="date" name="deliveryDate"><br><br>
+  <label>Quantity:</label><br>
+  <input type="number" name="qty" min="1" max="10" value="1"><br><br>
+  <label>Price Range:</label><br>
+  <input type="range" name="price" min="100" max="5000" step="100"><br><br>
+  <label>Preferred Color:</label><br>
+  <input type="color" name="color"><br><br>
+  <label>Payment Method:</label><br>
+  <select name="payment">
+    <option value="card">Credit/Debit Card</option>
+    <option value="upi">UPI</option>
+    <option value="cod">Cash on Delivery</option>
+  </select><br><br>
+  <label>
+    <input type="checkbox" name="subscribe"> Subscribe to newsletter
+  </label><br><br>
+  <button type="submit" class="btn">Place Order</button>
+  <button type="reset" class="btn">Clear Form</button>
+</form>
+<script>
+function allowDrop(ev) { ev.preventDefault(); }
+function drag(ev) { ev.dataTransfer.setData("text", ev.target.id); }
+function drop(ev) {
+  ev.preventDefault();
+  var data = ev.dataTransfer.getData("text");
+  ev.target.appendChild(document.getElementById(data));
+}
+var x = document.getElementById("demo");
+function getLocation() {
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(showPosition, showError);
+  } else {
+    x.innerHTML = "Geolocation is not supported by this browser.";
+  }
+}
+function showPosition(position) {
+  x.innerHTML = "Latitude: " + position.coords.latitude +
+  "<br>Longitude: " + position.coords.longitude;
+}
+function showError(error) {
+  x.innerHTML = "Unable to retrieve your location.";
+}
+</script>
+</body>
+</html>
