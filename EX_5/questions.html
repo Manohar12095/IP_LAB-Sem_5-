@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Questions</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="container">
+        <h1>Online Quiz</h1>
+
+        <div class="student-info">
+            <p><b>Name:</b> <span id="studentName"></span></p>
+            <p><b>Roll Number:</b> <span id="rollNumber"></span></p>
+        </div>
+
+        <form id="quizForm">
+
+            <div class="question">
+        <p>1. What does C++ stand for?</p>
+        <label><input type="radio" name="q1" value="a"> C Plus Plus</label>
+        <label><input type="radio" name="q1" value="b"> Computer Programming Plus</label>
+        <label><input type="radio" name="q1" value="c"> C Programming Plus</label>
+        <label><input type="radio" name="q1" value="d"> Code Plus Plus</label>
+    </div>
+
+    <div class="question">
+        <p>2. Which symbol is used to end a statement in C++?</p>
+        <label><input type="radio" name="q2" value="a"> :</label>
+        <label><input type="radio" name="q2" value="b"> ;</label>
+        <label><input type="radio" name="q2" value="c"> .</label>
+        <label><input type="radio" name="q2" value="d"> ,</label>
+    </div>
+
+    <div class="question">
+        <p>3. Which keyword is used to declare a variable that cannot be changed?</p>
+        <label><input type="radio" name="q3" value="a"> fixed</label>
+        <label><input type="radio" name="q3" value="b"> static</label>
+        <label><input type="radio" name="q3" value="c"> const</label>
+        <label><input type="radio" name="q3" value="d"> final</label>
+    </div>
+
+    <div class="question">
+        <p>4. Which function is the starting point of a C++ program?</p>
+        <label><input type="radio" name="q4" value="a"> start()</label>
+        <label><input type="radio" name="q4" value="b"> main()</label>
+        <label><input type="radio" name="q4" value="c"> begin()</label>
+        <label><input type="radio" name="q4" value="d"> run()</label>
+    </div>
+
+    <div class="question">
+        <p>5. Which data type is used to store whole numbers?</p>
+        <label><input type="radio" name="q5" value="a"> float</label>
+        <label><input type="radio" name="q5" value="b"> char</label>
+        <label><input type="radio" name="q5" value="c"> int</label>
+        <label><input type="radio" name="q5" value="d"> double</label>
+    </div>
+
+    <div class="question">
+        <p>6. Which operator is used for comparison of two values?</p>
+        <label><input type="radio" name="q6" value="a"> =</label>
+        <label><input type="radio" name="q6" value="b"> ==</label>
+        <label><input type="radio" name="q6" value="c"> +=</label>
+        <label><input type="radio" name="q6" value="d"> !=</label>
+    </div>
+
+    <div class="question">
+        <p>7. Which keyword is used to create a class in C++?</p>
+        <label><input type="radio" name="q7" value="a"> object</label>
+        <label><input type="radio" name="q7" value="b"> structure</label>
+        <label><input type="radio" name="q7" value="c"> class</label>
+        <label><input type="radio" name="q7" value="d"> create</label>
+    </div>
+
+    <div class="question">
+        <p>8. Which statement is used to take input from the user?</p>
+        <label><input type="radio" name="q8" value="a"> cout</label>
+        <label><input type="radio" name="q8" value="b"> cin</label>
+        <label><input type="radio" name="q8" value="c"> input</label>
+        <label><input type="radio" name="q8" value="d"> scanf</label>
+    </div>
+
+    <div class="question">
+        <p>9. Which statement is used to display output in C++?</p>
+        <label><input type="radio" name="q9" value="a"> cin</label>
+        <label><input type="radio" name="q9" value="b"> print</label>
+        <label><input type="radio" name="q9" value="c"> cout</label>
+        <label><input type="radio" name="q9" value="d"> display</label>
+    </div>
+
+    <div class="question">
+        <p>10. Which concept allows the same function name to have different parameters?</p>
+        <label><input type="radio" name="q10" value="a"> Inheritance</label>
+        <label><input type="radio" name="q10" value="b"> Encapsulation</label>
+        <label><input type="radio" name="q10" value="c"> Function Overloading</label>
+        <label><input type="radio" name="q10" value="d"> Abstraction</label>
+    </div>
+
+    <div class="question">
+        <p>11. What file extension is used for C++ source files? (one word)</p>
+        <input type="text" name="q11" class="oneword" placeholder="Type your answer">
+    </div>
+
+    <div class="question">
+        <p>12. Which header file is used for input/output operations in C++? (one word)</p>
+        <input type="text" name="q12" class="oneword" placeholder="Type your answer">
+    </div>
+
+    <button type="button" onclick="submitQuiz()">Submit Quiz</button>
+
+        </form>
+
+        <div id="result"></div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
