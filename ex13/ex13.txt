@@ -1,0 +1,167 @@
+Ex 13 - XML with AJAX (Order Viewer)
+====================================
+
+----- index.html -----
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Online Shopping - Order Viewer</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 20px; }
+    table { border-collapse: collapse; width: 100%; margin-top: 15px; }
+    th, td { padding: 10px; text-align: left; border: 1px solid #ddd; }
+    th { background-color: #f4f4f4; }
+    tr:nth-child(even) { background-color: #f9f9f9; }
+    button { padding: 8px 15px; font-size: 16px; cursor: pointer; }
+  </style>
+  <script>
+    function loadOrders() {
+      var xhttp = new XMLHttpRequest();
+      xhttp.onreadystatechange = function () {
+        if (this.readyState == 4 && this.status == 200) {
+          var xml = this.responseXML;
+          var orders = xml.getElementsByTagName("order");
+          var output = "<h2>Order Details</h2>";
+          output += "<table>";
+          output += "<tr><th>ID</th><th>Customer</th><th>Product</th>" +
+                    "<th>Quantity</th><th>Price</th><th>Date</th><th>Status</th></tr>";
+
+          for (var i = 0; i < orders.length; i++) {
+            var o = orders[i];
+            function val(tag) {
+              var element = o.getElementsByTagName(tag)[0];
+              return element && element.childNodes[0] ? element.childNodes[0].nodeValue : "";
+            }
+            var id = val("id");
+            var customer = val("customer");
+            var product = val("product");
+            var quantity = val("quantity");
+            var price = val("price");
+            var date = val("date");
+            var status = val("status");
+            output += "<tr>" +
+                      "<td>" + id + "</td>" +
+                      "<td>" + customer + "</td>" +
+                      "<td>" + product + "</td>" +
+                      "<td>" + quantity + "</td>" +
+                      "<td>$" + price + "</td>" +
+                      "<td>" + date + "</td>" +
+                      "<td>" + status + "</td>" +
+                      "</tr>";
+          }
+          output += "</table>";
+          document.getElementById("orderData").innerHTML = output;
+        }
+      };
+      xhttp.open("GET", "orders.xml", true);
+      xhttp.send();
+    }
+  </script>
+</head>
+<body>
+  <h1>Online Shopping - Order Viewer</h1>
+  <button onclick="loadOrders()">Load Orders</button>
+  <div id="orderData"></div>
+</body>
+</html>
+
+----- orders.xml -----
+
+<?xml version="1.0" encoding="UTF-8"?>
+<orders>
+  <order>
+    <id>201</id>
+    <customer>Rahul Sharma</customer>
+    <product>Noise-Cancelling Headphones</product>
+    <quantity>1</quantity>
+    <price>120.00</price>
+    <date>2026-06-01</date>
+    <status>Delivered</status>
+  </order>
+  <order>
+    <id>202</id>
+    <customer>Priya Patel</customer>
+    <product>Ergonomic Office Chair</product>
+    <quantity>1</quantity>
+    <price>210.50</price>
+    <date>2026-06-02</date>
+    <status>Shipped</status>
+  </order>
+  <order>
+    <id>203</id>
+    <customer>Michael Brown</customer>
+    <product>Mechanical Gaming Keyboard</product>
+    <quantity>2</quantity>
+    <price>75.00</price>
+    <date>2026-06-03</date>
+    <status>Processing</status>
+  </order>
+  <order>
+    <id>204</id>
+    <customer>Emily Davis</customer>
+    <product>Ultra-Wide 29-inch Monitor</product>
+    <quantity>1</quantity>
+    <price>299.99</price>
+    <date>2026-06-03</date>
+    <status>Delivered</status>
+  </order>
+  <order>
+    <id>205</id>
+    <customer>David Wilson</customer>
+    <product>Wireless Charging Pad</product>
+    <quantity>3</quantity>
+    <price>19.99</price>
+    <date>2026-06-04</date>
+    <status>Shipped</status>
+  </order>
+  <order>
+    <id>206</id>
+    <customer>Ananya Iyer</customer>
+    <product>External SSD 1TB</product>
+    <quantity>1</quantity>
+    <price>89.99</price>
+    <date>2026-06-05</date>
+    <status>Processing</status>
+  </order>
+  <order>
+    <id>207</id>
+    <customer>Carlos Gomez</customer>
+    <product>Webcam 1080p HD</product>
+    <quantity>2</quantity>
+    <price>49.99</price>
+    <date>2026-06-05</date>
+    <status>Delivered</status>
+  </order>
+  <order>
+    <id>208</id>
+    <customer>Fatima Al-Farsi</customer>
+    <product>Laptop Stand Adjustable</product>
+    <quantity>1</quantity>
+    <price>35.00</price>
+    <date>2026-06-06</date>
+    <status>Shipped</status>
+  </order>
+  <order>
+    <id>209</id>
+    <customer>Liam Johnson</customer>
+    <product>Bluetooth Speaker</product>
+    <quantity>2</quantity>
+    <price>55.00</price>
+    <date>2026-06-06</date>
+    <status>Processing</status>
+  </order>
+  <order>
+    <id>210</id>
+    <customer>Neha Gupta</customer>
+    <product>Smart Fitness Band</product>
+    <quantity>1</quantity>
+    <price>65.00</price>
+    <date>2026-06-07</date>
+    <status>Delivered</status>
+  </order>
+</orders>
+
+----- OUTPUT -----
+
+[Image 1: ex13_output1_order_viewer_output.png]

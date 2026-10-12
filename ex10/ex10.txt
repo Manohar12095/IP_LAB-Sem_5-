@@ -1,0 +1,80 @@
+Ex 10 - PHP E-Learning Registration
+===================================
+
+----- index.php -----
+
+<?php
+$name = "";
+$mobile = "";
+$email = "";
+$password = "";
+$card = "";
+$course = "";
+$message = "";
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+  $name = htmlspecialchars($_POST["name"]);
+  $mobile = htmlspecialchars($_POST["mobile"]);
+  $email = htmlspecialchars($_POST["email"]);
+  $password = htmlspecialchars($_POST["password"]);
+  $card = htmlspecialchars($_POST["card"]);
+  $course = htmlspecialchars($_POST["course"]);
+  $message = "Registration successful!";
+}
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>E-Learning Registration</title>
+</head>
+<body>
+  <h2>E-Learning Registration</h2>
+  <form method="POST" action="">
+    <label>Full Name:</label><br>
+    <input type="text" name="name" placeholder="Enter your name" required>
+    <br><br>
+    <label>Mobile Number:</label><br>
+    <input type="tel" name="mobile" placeholder="Enter your mobile number"
+           pattern="[0-9]{10}" maxlength="10" required>
+    <br><br>
+    <label>Email:</label><br>
+    <input type="email" name="email" placeholder="Enter your email" required>
+    <br><br>
+    <label>Password:</label><br>
+    <input type="password" name="password" placeholder="Enter your password" required>
+    <br><br>
+    <label>Credit Card Number:</label><br>
+    <input type="text" name="card" placeholder="Enter your credit card number"
+           inputmode="numeric" pattern="[0-9]{13,19}" maxlength="19" required>
+    <br><br>
+    <label>Select Course:</label><br>
+    <select name="course" required>
+      <option value="">-- Select Course --</option>
+      <option value="Web Development">Web Development</option>
+      <option value="PHP Programming">PHP Programming</option>
+      <option value="Python">Python</option>
+      <option value="Java">Java</option>
+      <option value="Data Science">Data Science</option>
+    </select>
+    <br><br>
+    <input type="submit" value="Register">
+  </form>
+
+  <?php if ($message != ""): ?>
+    <h3><?php echo $message; ?></h3>
+    <p>
+      Name: <?php echo $name; ?><br>
+      Mobile: <?php echo $mobile; ?><br>
+      Email: <?php echo $email; ?><br>
+      Password: <?php echo $password; ?><br>
+      Credit Card: <?php echo $card; ?><br>
+      Course: <?php echo $course; ?>
+    </p>
+  <?php endif; ?>
+</body>
+</html>
+
+----- OUTPUT -----
+
+[Image 1: ex10_output1_registration_form_and_result.png]

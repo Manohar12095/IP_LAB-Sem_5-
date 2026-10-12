@@ -1,0 +1,172 @@
+Ex 9 - JSP User Registration with MySQL
+=======================================
+
+----- index.html -----
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>User Registration Form</title>
+</head>
+<body>
+  <h2>User Registration</h2>
+  <form action="register.jsp" method="post">
+    <label for="username">User Name:</label>
+    <input type="text" id="username" name="username" required><br><br>
+
+    <label for="password">Password:</label>
+    <input type="password" id="password" name="password" required><br><br>
+
+    <label for="fullname">Full Name:</label>
+    <input type="text" id="fullname" name="fullname" required><br><br>
+
+    <label for="creditcard">Credit Card Number:</label>
+    <input type="text" id="creditcard" name="creditcard" required><br><br>
+
+    <label for="email">Email:</label>
+    <input type="email" id="email" name="email" required><br><br>
+
+    <label for="phone">Phone Number:</label>
+    <input type="text" id="phone" name="phone" required><br><br>
+
+    <input type="submit" value="Register">
+    <input type="reset" value="Reset">
+  </form>
+  <br>
+  <a href="displayUsers.jsp">View Registered Users</a>
+</body>
+</html>
+
+----- register.jsp -----
+
+<%@ page import="java.sql.*" %>
+<%@ page contentType="text/html; charset=UTF-8" language="java" %>
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Registration Result</title>
+</head>
+<body>
+<%
+  String username = request.getParameter("username");
+  String password = request.getParameter("password");
+  String fullname = request.getParameter("fullname");
+  String creditcard = request.getParameter("creditcard");
+  String email = request.getParameter("email");
+  String phone = request.getParameter("phone");
+
+  Connection conn = null;
+  PreparedStatement pstmt = null;
+
+  try {
+    // 1. Load JDBC driver
+    Class.forName("com.mysql.cj.jdbc.Driver");
+
+    // 2. Establish connection (with SSL disabled to prevent GlassFish keystore issues)
+    conn = DriverManager.getConnection(
+        "jdbc:mysql://localhost:3306/userdb?useSSL=false&allowPublicKeyRetrieval=true",
+        "root", "mysql");
+
+    // 3. Prepare SQL INSERT query for all fields
+    String sql = "INSERT INTO users(username, password, fullname, creditcard, email, phone) "
+               + "VALUES(?, ?, ?, ?, ?, ?)";
+    pstmt = conn.prepareStatement(sql);
+    pstmt.setString(1, username);
+    pstmt.setString(2, password);
+    pstmt.setString(3, fullname);
+    pstmt.setString(4, creditcard);
+    pstmt.setString(5, email);
+    pstmt.setString(6, phone);
+
+    int rows = pstmt.executeUpdate();
+    if (rows > 0) {
+%>
+      <h2>Registration Successful!</h2>
+      <p>User <strong><%= username %></strong> has been registered.</p>
+<%
+    } else {
+%>
+      <h2>Registration Failed!</h2>
+<%
+    }
+  } catch (Exception e) {
+    out.println("<p style='color:red'>Error: " + e.getMessage() + "</p>");
+  } finally {
+    try { if (pstmt != null) pstmt.close(); } catch (Exception e) {}
+    try { if (conn != null) conn.close(); } catch (Exception e) {}
+  }
+%>
+<br>
+<a href="registration.html">Go Back</a> | <a href="displayUsers.jsp">View All Users</a>
+</body>
+</html>
+
+----- displayUsers.jsp -----
+
+<%@ page import="java.sql.*" %>
+<%@ page contentType="text/html; charset=UTF-8" language="java" %>
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Registered Users</title>
+</head>
+<body>
+  <h2>All Registered Users</h2>
+  <table border="1" cellpadding="5">
+    <tr>
+      <th>ID</th>
+      <th>Username</th>
+      <th>Password</th>
+      <th>Full Name</th>
+      <th>Credit Card</th>
+      <th>Email</th>
+      <th>Phone</th>
+    </tr>
+<%
+  Connection conn = null;
+  Statement stmt = null;
+  ResultSet rs = null;
+  try {
+    Class.forName("com.mysql.cj.jdbc.Driver");
+    conn = DriverManager.getConnection(
+        "jdbc:mysql://localhost:3306/userdb?useSSL=false&allowPublicKeyRetrieval=true",
+        "root", "mysql");
+    stmt = conn.createStatement();
+    rs = stmt.executeQuery("SELECT * FROM users");
+
+    while (rs.next()) {
+%>
+    <tr>
+      <td><%= rs.getInt("id") %></td>
+      <td><%= rs.getString("username") %></td>
+      <td><%= rs.getString("password") %></td>
+      <td><%= rs.getString("fullname") %></td>
+      <td><%= rs.getString("creditcard") %></td>
+      <td><%= rs.getString("email") %></td>
+      <td><%= rs.getString("phone") %></td>
+    </tr>
+<%
+    }
+  } catch (Exception e) {
+    out.println("<tr><td colspan='7' style='color:red'>" + e.getMessage() + "</td></tr>");
+  } finally {
+    try { if (rs != null) rs.close(); } catch (Exception e) {}
+    try { if (stmt != null) stmt.close(); } catch (Exception e) {}
+    try { if (conn != null) conn.close(); } catch (Exception e) {}
+  }
+%>
+  </table>
+  <br>
+  <a href="registration.html">Go Back to Registration</a>
+</body>
+</html>
+
+----- OUTPUT -----
+
+[Image 1: ex9_output1_registration_form.png]
+[Image 2: ex9_output2_registration_successful.png]
+[Image 3: ex9_output3_all_registered_users.png]
+[Image 4: ex9_output4_mysql_users_table.png]
